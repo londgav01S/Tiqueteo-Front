@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+
+
 import './App.css';
+import * as PropTypes from "prop-types";
+import {BaseLog} from "./Components/Log/BaseLog";
+import {Login} from "./Components/Log/LoginView/Login";
+import {RegisterUser} from "./Components/Log/RegisterUserView/RegisterUser";
+
+function Router(props) {
+    return null;
+}
+
+Router.propTypes = {children: PropTypes.node};
+
+function ContextProvider(props) {
+    return null;
+}
+
+ContextProvider.propTypes = {children: PropTypes.node};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+          <Login/>
+      </>
+
   );
 }
 
