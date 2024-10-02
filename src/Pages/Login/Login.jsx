@@ -1,5 +1,5 @@
-import {BaseDataLogin} from "./BaseDataLogin";
-import {BaseLog} from "../BaseLog";
+import {BaseDataLogin} from "../../Components/Log/LoginView/BaseDataLogin";
+import {BaseLog} from "../../Components/Log/BaseLog";
 
 function Login() {
     return (

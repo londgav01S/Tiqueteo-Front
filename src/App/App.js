@@ -1,10 +1,8 @@
-
-
 import './App.css';
 import * as PropTypes from "prop-types";
-import {BaseLog} from "./Components/Log/BaseLog";
-import {Login} from "./Components/Log/LoginView/Login";
-import {RegisterUser} from "./Components/Log/RegisterUserView/RegisterUser";
+import {RecoverPassword} from "../Pages/RecoverPassword/RecoverPassword";
+import {EnterCode} from "../Components/Code/EnterCode";
+import {DataNewPassword} from "../Components/NewPassword/DataNewPassword";
 
 function Router(props) {
     return null;
@@ -21,7 +19,7 @@ ContextProvider.propTypes = {children: PropTypes.node};
 function App() {
   return (
       <>
-          <Login/>
+          <DataNewPassword/>
       </>
 
   );

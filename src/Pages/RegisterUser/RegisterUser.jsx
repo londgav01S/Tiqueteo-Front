@@ -1,5 +1,5 @@
-import {BaseLog} from "../BaseLog";
-import {DataRegisterUser} from "./DataRegisterUser";
+import {BaseLog} from "../../Components/Log/BaseLog";
+import {DataRegisterUser} from "../../Components/Log/RegisterUserView/DataRegisterUser";
 
 function RegisterUser() {
     return (
