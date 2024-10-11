@@ -1,6 +1,4 @@
 import React, {useRef, useState} from "react";
-import './indexCode.css';
-import {FcGoogle} from "react-icons/fc";
 
 function DataNewPassword() {
     const [newPassword, setNewPassword] = useState('');

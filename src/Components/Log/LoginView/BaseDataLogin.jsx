@@ -5,14 +5,12 @@ import './BaseDataLogin.css';
 function BaseDataLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loginResponse, setLoginResponse] = useState(''); // Estado para la respuesta del servidor
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
 
 
     function handleSubmit(e) {
-
         console.log('User logged in successfullyyyyyy');
         e.preventDefault(); // Evita que el formulario se envíe por defecto
 
@@ -51,8 +49,13 @@ function BaseDataLogin() {
     }
 
     function handleSubmitGoogle() {
+        console.log("login with google")
+        const clientId = '633937686926-kop9phc0tug4usplr1inlidd45tdrjng.apps.googleusercontent.com'; // Reemplaza con tu client_id
+        const redirectUri = 'http://localhost:8080/api/client/login'; // TODO: Asegúrate de que coincida con tu configuración
+        const scope = 'openid profile email'; // Ajusta los scopes según sea necesario
+        const authUrl = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
 
-
+        window.location.href = authUrl;
     }
 
     return (
