@@ -1,27 +1,25 @@
 import './App.css';
-import * as PropTypes from "prop-types";
-import {DataNewPassword} from "../Components/NewPassword/DataNewPassword";
-import {Login} from "../Pages/Login/Login";
-import {RegisterUser} from "../Pages/RegisterUser/RegisterUser";
-import {RecoverPassword} from "../Pages/RecoverPassword/RecoverPassword";
+import {LoginProvier} from "../Contexts/LoginContext";
+import {HomePage} from "../Pages/Home/HomePage";
+import {BrowserRouter as Router} from "react-router-dom";
+import {EventProvider} from "../Contexts/EventContex";
+import React from "react";
+import {AppUI} from "./AppUI";
+import {UpdateProvider} from "../Contexts/UpdateContex";
 
-function Router(props) {
-    return null;
-}
-
-Router.propTypes = {children: PropTypes.node};
-
-function ContextProvider(props) {
-    return null;
-}
-
-ContextProvider.propTypes = {children: PropTypes.node};
 
 function App() {
   return (
-      <>
-          <Login/>
-      </>
+      <Router>
+
+          <EventProvider>
+              <LoginProvier>
+                  <UpdateProvider>
+                      <AppUI/>
+                  </UpdateProvider>
+              </LoginProvier>
+          </EventProvider>
+      </Router>
 
   );
 }

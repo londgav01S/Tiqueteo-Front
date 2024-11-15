@@ -1,0 +1,21 @@
+.row-Event-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.input-groupE {
+    flex: 1 1 45%;
+    min-width: 200px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.input-E{
+    width: 300px;
+}
+
+.select-events, .label-event{
+    margin-left: 10px;
+    width: 330px;
+}

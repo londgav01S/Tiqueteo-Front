@@ -1,0 +1,163 @@
+.form-container {
+    display: flex;
+    max-width: 1000px;
+    margin: 20px 30px;
+    padding: 20px;
+    gap: 40px;
+    font-family:"Abel", sans-serif ;
+    font-weight: 40;
+}
+
+.form-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-section {
+    width: 100%;
+}
+
+h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.input-group,  .input-group1 {
+    margin-bottom: 15px;
+}
+
+.input-name-p, .input-date, .input-group1, .input-group{
+    width: 250px;
+}
+
+.select-op, .select-percentage{
+    width: 270px;
+}
+
+.input-group1{
+    margin-top: 20px;
+}
+
+.input-tel{
+    width: 338px;
+}
+
+
+.input-row {
+    display: flex;
+    margin-bottom: 10px;
+    gap: 100px;
+}
+
+.input-group21{
+    margin-top: 20px;
+}
+
+.input-row1{
+    display: flex;
+    margin-bottom: 10px;
+    gap: 80px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 14px;
+}
+
+input {
+    width: 55%;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #0671E0;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.image-section {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 120px;
+    margin-right: 60px;
+}
+
+.image-placeholder {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+}
+
+.image-placeholder span {
+    font-size: 40px;
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        flex-direction: column;
+    }
+
+    .image-section {
+        width: 100%;
+    }
+}
+
+/* From Uiverse.io by vikiWayne */
+.btn-Create-Coupon {
+    width: 300px;
+    margin-left: 150px;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #0671E0;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #0671E0;
+}
+
+.btn-Create-Coupon:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #0671E0;
+    box-shadow: 4px 5px 17px -4px #0671E0;
+}
+
+.btn-Create-Coupon::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #0671E0;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+}
+
+.btn-Create-Coupon:hover::before {
+    width: 250%;
+}

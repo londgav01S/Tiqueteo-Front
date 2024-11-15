@@ -1,0 +1,11 @@
+.scrollImage{
+    background-color: #003495;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageScroll{
+    width: 80%;
+    height: 400px;
+}

@@ -1,0 +1,18 @@
+.AccountBaseBg{
+    border: 1px solid #024DD9;
+    border-radius: 3px;
+    width: 100%;
+    height: 100%;
+    .Separator{
+        height: 1px;
+        background-color: #024DD9;
+        margin: 13px 0;
+        width: 100%;
+    }
+
+    .Title-Abb{
+        padding: 20px 0px 5px 30px;
+        font-family: "Bigshot One", serif;
+        font-size: 25px;
+    }
+}

@@ -1,0 +1,5 @@
+.ticket-image {
+    width: 5cm; /* Tamaño de la imagen */
+    height: 5cm; /* Tamaño de la imagen */
+    object-fit: cover; /* Ajustar la imagen dentro del contenedor */
+}

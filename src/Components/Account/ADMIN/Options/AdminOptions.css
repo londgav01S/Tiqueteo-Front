@@ -1,0 +1,36 @@
+.AccountOpAdmin{
+    width: 150px;
+    background-color: #EDF5FE;
+    padding: 10px 10px 10px 30px;
+    border-radius: 2px;
+    margin-top: 41px;
+    margin-left: 20px;
+    box-shadow: 0px 0px 10px 0px #024DD9;
+    font-family: "Abel", sans-serif;
+    text-align: left;
+    border: 1px solid #024DD9;
+}
+
+.Title-AopAdmin{
+    font-family: "Bigshot One", serif;
+}
+
+.AccountOp_Admin{
+    font-family: "Abel", sans-serif;
+    font-size: 15px;
+    display: grid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 10px;
+    .AccountOpOptionAdmin{
+        font-family: "Abel", sans-serif;
+        text-decoration: none;
+        color: #000000;
+    }
+    .SeparatorAdmin{
+        height: 1px;
+        background-color: #024DD9;
+        margin: 13px 0;
+        width: 120px;
+    }
+}

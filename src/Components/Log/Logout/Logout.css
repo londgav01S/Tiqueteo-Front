@@ -1,0 +1,58 @@
+.closeContainer{
+    display: grid;
+    justify-content: center;
+    height: 300px;
+    width: 300px;
+    border-color: black;
+    border-width: 10px;
+}
+
+.close{
+    border-color: black;
+}
+
+.descriptionClose{
+    font-family: "Bigshot One", serif;
+    text-align: right;
+    font-weight: 400;
+}
+
+.buttonC-container{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    columns: 2;
+    font-family: "Abel", sans-serif;
+}
+
+.yesContainer{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.button-yes, .button-no{
+    height: 80px;
+    width: 70px;
+    background-color: white;
+}
+
+.button-yes{
+    border-color: green;
+}
+
+.button-yes:hover{
+    background-color: rgba(0, 128, 0, 0.24);
+}
+.button-no:hover{
+    background-color: rgba(255, 0, 0, 0.24);
+}
+
+.yes, .no{
+    padding-left: 20px;
+}
+
+.button-no{
+    border-color: red;
+}
