@@ -1,0 +1,157 @@
+.locationContainer{
+    font-family: "Abel", sans-serif;
+    padding: 20px 0 20px 0;
+}
+
+.row-Locality-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.input-groupL {
+    flex: 1 1 45%;
+    min-width: 200px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.input-L{
+    width: 300px;
+}
+
+.localities-table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.localities-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.localities-table th,
+.localities-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.localities-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.localities-table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.localities-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.localities-table tr.editing {
+    background-color: #e3f2fd;
+}
+
+
+.localities-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.delete-btn {
+    width: 100px !important;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000 !important;
+}
+
+
+.btn-AddLocality.update:hover {
+    background-color: #1976D2;
+}
+
+.btn-CancelEdit {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 23px;
+    margin-left: 20px;
+    flex: 1;
+    transition: background-color 0.3s;
+}
+
+.btn-CancelEdit:hover {
+    background-color: #d32f2f;
+}
+
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .row-Locality-info {
+        flex-direction: column;
+    }
+
+    .input-groupL, .input-groupE {
+        width: 100%;
+    }
+
+    .localities-table {
+        font-size: 14px;
+    }
+}
+
+.btn-AddLocality {
+    width: 300px;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #0671E0;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #0671E0;
+}
+
+.btn-AddLocality:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #0671E0;
+    box-shadow: 4px 5px 17px -4px #0671E0;
+}
+
+.btn-AddLocality::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #0671E0;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+}
+
+.btn-AddLocality:hover::before {
+    width: 250%;
+}

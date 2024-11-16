@@ -1,7 +1,7 @@
 .upload-container {
-    width: 100%;
+    width: 77%;
     max-width: 64rem;
-    margin: 0 auto;
+    margin: 0;
     padding: 1rem;
 }
 
@@ -45,10 +45,21 @@
     right: 0.5rem;
     background-color: #ef4444;
     color: white;
-    border-radius: 9999px;
-    padding: 0.25rem;
+    border: none;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
     opacity: 0;
     transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    opacity: 1;
 }
 
 .image-container:hover .remove-button {

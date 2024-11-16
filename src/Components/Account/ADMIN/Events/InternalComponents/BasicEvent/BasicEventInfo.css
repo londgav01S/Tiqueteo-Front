@@ -1,3 +1,7 @@
+.BasicInfoContainer{
+    padding-bottom: 40px;
+}
+
 .row-Event-info {
     display: flex;
     flex-wrap: wrap;
@@ -16,6 +20,6 @@
 }
 
 .select-events, .label-event{
-    margin-left: 10px;
-    width: 330px;
+    margin-left: 5px;
+    width: 320px;
 }

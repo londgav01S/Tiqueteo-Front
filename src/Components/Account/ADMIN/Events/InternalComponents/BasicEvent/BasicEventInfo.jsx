@@ -40,7 +40,7 @@ function BasicEventInfo() {
     };
 
     return (
-        <div>
+        <div className="BasicInfoContainer">
             <h2>Event Information</h2>
             <div className="row-Event-info">
                 <div className="input-groupE">
@@ -73,9 +73,6 @@ function BasicEventInfo() {
                         placeholder="Select Event"
                         className="select-events"
                     />
-                </div>
-                <div>
-                    
                 </div>
 
             </div>

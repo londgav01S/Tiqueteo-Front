@@ -1,3 +1,52 @@
 .Events-Container{
     margin: 50px;
 }
+
+.buttonE-container{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.Button-E {
+    width: 300px;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #00328f;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #00328f;
+}
+
+.Button-E:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #00328f;
+    box-shadow: 4px 5px 17px -4px #00328f;
+}
+
+.Button-E::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #00328f;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+}
+
+.Button-E:hover::before {
+    width: 250%;
+}

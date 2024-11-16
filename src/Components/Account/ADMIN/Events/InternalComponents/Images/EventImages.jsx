@@ -25,24 +25,24 @@ function EventImages() {
     };
 
     return (
-        <div className="w-full max-w-4xl mx-auto p-4">
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8">
-                <div className="mb-4">
-                    <h3 className="text-lg font-medium mb-2">Event Images:</h3>
-                    <div className="grid grid-cols-4 gap-4">
+        <div className="upload-container">
+            <div className="upload-area">
+                <div className="upload-content">
+                    <h3 className="upload-title">Event Images:</h3>
+                    <div className="image-grid">
                         {images.map((image, index) => (
-                            <div key={index} className="relative group">
+                            <div key={index} className="image-container">
                                 <img
                                     src={image}
                                     alt={`Upload ${index + 1}`}
-                                    className="w-full h-32 object-cover rounded-lg"
+                                    className="uploaded-image"
                                 />
                                 <button
                                     onClick={() => removeImage(index)}
-                                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                    className="remove-button"
                                 >
                                     <svg
-                                        className="w-4 h-4"
+                                        className="remove-icon"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -57,17 +57,17 @@ function EventImages() {
                                 </button>
                             </div>
                         ))}
-                        <label className="cursor-pointer border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center h-32 hover:bg-gray-50 transition-colors">
+                        <label className="upload-label">
                             <input
                                 type="file"
                                 multiple
                                 accept="image/*"
                                 onChange={handleImageUpload}
-                                className="hidden"
+                                className="file-input"
                             />
-                            <div className="text-center">
+                            <div className="upload-placeholder">
                                 <svg
-                                    className="mx-auto h-8 w-8 text-gray-400"
+                                    className="upload-icon"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -79,8 +79,8 @@ function EventImages() {
                                         d="M12 4v16m8-8H4"
                                     />
                                 </svg>
-                                <span className="mt-2 block text-sm text-gray-600">
-                                    Choose files
+                                <span className="upload-text">
+                                  Choose files
                                 </span>
                             </div>
                         </label>
