@@ -1,15 +1,12 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Select from "react-select";
 import './BasicEventInfo.css';
+import {EventContext} from "../../../../../../Contexts/EventContex";
 
 
 function BasicEventInfo() {
 
-    const [event, setEvent] = useState(null);
-    const [eventName, setEventName] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [description, setDescription] = useState('');
+    const {event} = useContext(EventContext);
 
     const eventsTypes= [
         {
@@ -53,9 +50,9 @@ function BasicEventInfo() {
                         type="text"
                         placeholder="Super Event"
                         required="required"
-                        value={eventName}
+                        value={'eventName'}
                         className="input-E"
-                        onChange={(e) => setEventName(e.target.value)}
+                        onChange={(e) => event.name(e.target.value)}
                     />
                 </div>
                 <div className="input-groupE">
@@ -65,8 +62,8 @@ function BasicEventInfo() {
                         placeholder="Kloosterstraat 90"
                         className="input-E"
                         required="required"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
+                        value={'address'}
+                        onChange={(e) => event.address(e.target.value)}
                     />
                 </div>
                 <div className="input-groupE">
@@ -75,8 +72,8 @@ function BasicEventInfo() {
                            placeholder="Boom"
                            className="input-E"
                            required="required"
-                           value={city}
-                           onChange={(e) => setCity(e.target.value)}
+                           value={'city'}
+                           onChange={(e) => event.city(e.target.value)}
                     />
                 </div>
                 <div className="input-groupE">
@@ -86,15 +83,15 @@ function BasicEventInfo() {
                         placeholder="The best event in the world"
                         className="input-E"
                         required="required"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        value={'description'}
+                        onChange={(e) => event.description(e.target.value)}
                     />
                 </div>
                 <div className="input-groupE">
                     <label className="label-event">Type of Event:</label>
                     <Select
                         value={event}
-                        onChange={setEvent}
+                        onChange={(e) => event.type(e.value)}
                         options={eventsTypes}
                         styles={customStyles}
                         placeholder="Select Event"

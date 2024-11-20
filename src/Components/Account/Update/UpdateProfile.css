@@ -4,7 +4,7 @@
     margin: 20px 30px;
     padding: 20px;
     gap: 40px;
-    font-family:"Abel", sans-serif ;
+    font-family: "Abel", sans-serif;
     font-weight: 40;
 }
 
@@ -124,4 +124,54 @@ input:focus {
     .image-section4 {
         width: 100%;
     }
+}
+
+
+.buttonUpContainer{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.buttonUpdate4 {
+    width: 300px;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #00328f;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #00328f;
+}
+
+.buttonUpdate4:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #00328f;
+    box-shadow: 4px 5px 17px -4px #00328f;
+}
+
+.buttonUpdate4::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #00328f;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+}
+
+.buttonUpdate4:hover::before {
+    width: 250%;
 }

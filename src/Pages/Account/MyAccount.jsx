@@ -13,13 +13,8 @@ import {Events} from "./Admin/Events";
 
 function MyAccount() {
 
-    let {userLogged, isAdmin, isUser, setIsAdmin}= useContext(LoginContext);
-    let user = userLogged[0];
-
-
-
-    //TODO: Implementar lo de que se cambie cuando haga click en cada opcion
-    //TODO: Implementar que se muestre segun sea admin o user
+    let {userLogged, isAdmin}= useContext(LoginContext);
+    let user = userLogged;
 
     return (
         <div className="MyAccount">

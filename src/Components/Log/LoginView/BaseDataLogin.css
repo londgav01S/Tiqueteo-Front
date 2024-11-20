@@ -128,10 +128,12 @@ label{
     font-style: normal;
     font-size: 13px;
     color: #717171;
-    margin-top: 20px;
     margin-left: 40px;
+    border: none;
+    background-color: white;
 }
 .dontHaveAnAccount:hover{
     color: #002D81;
     cursor: pointer;
 }
+

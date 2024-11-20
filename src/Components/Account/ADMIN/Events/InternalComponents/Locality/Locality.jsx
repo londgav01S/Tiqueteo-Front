@@ -3,8 +3,7 @@ import { EventContext} from "../../../../../../Contexts/EventContex";
 import './Locality.css';
 
 function Locality() {
-    const { localityName, setLocalityName, price, setPrice, capacity, setCapacity } = useContext(EventContext);
-    const [localities, setLocalities] = useState([]);
+    const { localityName, setLocalityName, price, setPrice, capacity, setCapacity, localities, setLocalities } = useContext(EventContext);
     const [editingId, setEditingId] = useState(null);
 
     const handleAddLocality = () => {

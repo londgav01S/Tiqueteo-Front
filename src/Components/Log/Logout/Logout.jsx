@@ -1,17 +1,22 @@
 import {IoCheckmark, IoClose} from "react-icons/io5";
 import React from "react";
 import './Logout.css';
+import {ModalContext} from "../../../Contexts/ModalContext";
+import {LoginContext} from "../../../Contexts/LoginContext";
+import {useNavigate} from "react-router-dom";
 
 
 function Logout() {
 
+    const {setOpenLogout} = React.useContext(ModalContext);
+    const {setUserLogged, setIsLoged} = React.useContext(LoginContext);
+    const navigate = useNavigate();
+
     function handleLongout() {
-        //TODO: Implementar el logout with the backend
-    }
-
-
-    function handleCancelLogout() {
-        //TODO: Implementar el cancelar logout y cerrar el modal
+        setUserLogged(null);
+        setIsLoged(false);
+        setOpenLogout(false);
+        navigate("/");
     }
 
     return (
@@ -39,7 +44,7 @@ function Logout() {
                     </div>
 
                     <div className={"noContainer"}>
-                        <button className="button-no" onClick={handleCancelLogout}>
+                        <button className="button-no" onClick={() => setOpenLogout(false)}>
                             <IoClose color={"red"} size={50}/>
                         </button>
                         <h2 className="no">NO</h2>

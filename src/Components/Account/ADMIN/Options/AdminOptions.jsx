@@ -1,8 +1,13 @@
 import React from 'react';
 import './AdminOptions.css';
 import { Link } from 'react-router-dom';
+import {ModalContext} from "../../../../Contexts/ModalContext";
+import {LogoutModal} from "../../../../Hooks/Modals/LogoutModal";
+import {Logout} from "../../../Log/Logout/Logout";
 
 function AdminOptions(){
+
+    const {setOpenLogout, openLogout} = React.useContext(ModalContext);
     return(
         <div className="AccountOpAdmin">
             <style>
@@ -28,8 +33,15 @@ function AdminOptions(){
                     <h4>EVENTS</h4>
                     <Link to={"/account/events"} className="AccountOpOptionAdmin">Management <br/>of Events</Link>
                     <div className="SeparatorAdmin"/>
-                    <Link to={"/logout"} className="AccountOpOptionAdmin">Log Out</Link>
                 </nav>
+                <div>
+                    <button className="BtnAccountOpOption" onClick={() => setOpenLogout(true)}>Log Out</button>
+                    {openLogout && (
+                        <LogoutModal>
+                            <Logout/>
+                        </LogoutModal>
+                    )}
+                </div>
             </div>
         </div>
     )

@@ -6,6 +6,7 @@ import {EventProvider} from "../Contexts/EventContex";
 import React from "react";
 import {AppUI} from "./AppUI";
 import {UpdateProvider} from "../Contexts/UpdateContex";
+import {ModalProvider} from "../Contexts/ModalContext";
 
 
 function App() {
@@ -15,7 +16,9 @@ function App() {
           <EventProvider>
               <LoginProvier>
                   <UpdateProvider>
-                      <AppUI/>
+                      <ModalProvider>
+                          <AppUI/>
+                      </ModalProvider>
                   </UpdateProvider>
               </LoginProvier>
           </EventProvider>

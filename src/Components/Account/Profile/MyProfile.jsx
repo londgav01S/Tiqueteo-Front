@@ -15,7 +15,7 @@ function MyProfile({user}) {
                     <h2>User Information</h2>
                     <div className="input-group3">
                         <label>User:</label>
-                        <input type="text" placeholder={user.user} className="name-user3"/>
+                        <input type="text" placeholder={user.name} className="name-user3"/>
                     </div>
                     <div className="input-group3">
                         <label>Email:</label>

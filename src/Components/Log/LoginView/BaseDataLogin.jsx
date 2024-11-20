@@ -2,20 +2,23 @@ import React, {useContext, useState} from 'react';
 import { FcGoogle } from "react-icons/fc";
 import './BaseDataLogin.css';
 import {LoginContext} from "../../../Contexts/LoginContext";
+import Alert from '@mui/material/Alert';
+import {useNavigate} from "react-router-dom";
 
 function BaseDataLogin() {
 
-    const {userLogged, setUserLogged, setIsLoged} = useContext(LoginContext);
+    const {userLogged, setUserLogged, setIsLoged, setIsAdmin} = useContext(LoginContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const [isOk, setIsOk] = useState(false);
 
+    const navigate = useNavigate();
 
 
     function handleSubmit(e) {
-        console.log('User logged in successfullyyyyyy');
         e.preventDefault(); // Evita que el formulario se envíe por defecto
 
         // Crear el objeto con las credenciales del usuario
@@ -34,8 +37,7 @@ function BaseDataLogin() {
         })
             .then(response => {
                 if (response.ok) {
-                    setIsLoged(true);
-                    return response.text(); // Convertir la respuesta a texto si es exitosa
+                    return response.json(); // Si la respuesta es exitosa, obtenemos el cliente
                 } else if (response.status === 401) {
                     throw new Error('Credenciales incorrectas');
                 } else {
@@ -43,8 +45,25 @@ function BaseDataLogin() {
                 }
             })
             .then(data => {
-                setSuccessMessage(data); // Mostrar el mensaje de éxito
-                setErrorMessage(''); // Limpiar cualquier mensaje de error
+                // Si el login es exitoso, se maneja el cliente aquí
+                setUserLogged(data);
+                setIsLoged(true);
+                console.log(data);
+                if(data.id === '100'){
+                    setIsAdmin(true);
+                    console.log("es admin")
+                }else {
+                    setIsAdmin(false);
+                    console.log("no es admin")
+                }
+                setSuccessMessage('Login exitoso');
+                setIsOk(true);
+                setErrorMessage('');
+                setEmail('');
+                setPassword('');
+                setTimeout(() => {
+                    navigate('/home'); // Redirigir al usuario a /home
+                }, 1000);
             })
             .catch(error => {
                 setErrorMessage(error.message); // Mostrar el mensaje de error
@@ -52,7 +71,8 @@ function BaseDataLogin() {
             });
     }
 
-        function handleSubmitGoogle() {
+
+    function handleSubmitGoogle() {
         console.log("login with google")
         const clientId = '633937686926-kop9phc0tug4usplr1inlidd45tdrjng.apps.googleusercontent.com'; // Reemplaza con tu client_id
         const redirectUri = 'http://localhost:8080/api/client/login'; // TODO: Asegúrate de que coincida con tu configuración
@@ -62,7 +82,9 @@ function BaseDataLogin() {
         window.location.href = authUrl;
     }
 
-
+    function handleNavigateToRegister() {
+        navigate('/registerUser'); // Redirigimos a /registerUser
+    }
 
     return (
             <div className="BackgroundB2Log">
@@ -109,6 +131,9 @@ function BaseDataLogin() {
                                 </style>
                                 Login now
                             </button>
+                            {errorMessage && <p className="error">{errorMessage}</p>}
+                            {isOk && <Alert severity="success">Login was Successful</Alert>}
+                            {successMessage && <p className="success">{successMessage}</p>}
                             <button className="continueGoogleLog" onClick={handleSubmitGoogle}>
                                 <style>
                                     @import url('https://fonts.googleapis.com/css2?family=Bigshot+One&display=swap');
@@ -116,7 +141,12 @@ function BaseDataLogin() {
                                 <FcGoogle size={20}/>
                                 Continue with Google
                             </button>
-                            <a href="https://www.google.com" className="dontHaveAnAccount">Don’t have an account? Sign up</a>
+                            <button
+                                className="dontHaveAnAccount"
+                                onClick={handleNavigateToRegister} // Redirige a /registerUser
+                            >
+                                Don’t have an account? Sign up
+                            </button>
                         </div>
                     </body>
                 </div>

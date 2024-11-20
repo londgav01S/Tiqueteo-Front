@@ -1,8 +1,14 @@
 import React from 'react';
 import './AccountOp.css';
 import { Link } from 'react-router-dom';
+import {ModalContext} from "../../../Contexts/ModalContext";
+import {LogoutModal} from "../../../Hooks/Modals/LogoutModal";
+import {Logout} from "../../Log/Logout/Logout";
 
 function AccountOp(){
+
+    const {setOpenLogout, openLogout} = React.useContext(ModalContext);
+
     return(
         <div className="AccountOpBg">
             <style>
@@ -21,8 +27,15 @@ function AccountOp(){
                     <Link to="/account/my-coupons" className="AccountOpOption">My Shopping <br/> history</Link>
                     <div className="Separator"/>
                     <Link to="/account/manage-coupons" className="AccountOpOption">Buy</Link>
-                    <Link to="/logout" className="AccountOpOption">Log Out</Link>
                 </nav>
+                <div>
+                    <button className="BtnAccountOpOption" onClick={() => setOpenLogout(true)}>Log Out</button>
+                    {openLogout && (
+                        <LogoutModal>
+                            <Logout/>
+                        </LogoutModal>
+                    )}
+                </div>
             </div>
         </div>
     )
