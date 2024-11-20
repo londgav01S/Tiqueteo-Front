@@ -10,7 +10,14 @@
     margin-bottom: 30px;
 }
 
-.Button-E {
+.Button-ME{
+    margin-top: 30px;
+    margin-right: 230px;
+    padding: 10px !important;
+    height: 50px !important;
+}
+
+.Button-E, .Button-ME {
     width: 300px;
     padding: 1em 2em;
     border: none;
@@ -49,4 +56,10 @@
 
 .Button-E:hover::before {
     width: 250%;
+}
+
+.event-delate-container{
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }

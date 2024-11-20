@@ -1,8 +1,12 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { FcGoogle } from "react-icons/fc";
 import './BaseDataLogin.css';
+import {LoginContext} from "../../../Contexts/LoginContext";
 
 function BaseDataLogin() {
+
+    const {userLogged, setUserLogged, setIsLoged} = useContext(LoginContext);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -30,6 +34,7 @@ function BaseDataLogin() {
         })
             .then(response => {
                 if (response.ok) {
+                    setIsLoged(true);
                     return response.text(); // Convertir la respuesta a texto si es exitosa
                 } else if (response.status === 401) {
                     throw new Error('Credenciales incorrectas');
@@ -45,10 +50,9 @@ function BaseDataLogin() {
                 setErrorMessage(error.message); // Mostrar el mensaje de error
                 setSuccessMessage(''); // Limpiar cualquier mensaje de éxito
             });
-
     }
 
-    function handleSubmitGoogle() {
+        function handleSubmitGoogle() {
         console.log("login with google")
         const clientId = '633937686926-kop9phc0tug4usplr1inlidd45tdrjng.apps.googleusercontent.com'; // Reemplaza con tu client_id
         const redirectUri = 'http://localhost:8080/api/client/login'; // TODO: Asegúrate de que coincida con tu configuración
@@ -57,6 +61,8 @@ function BaseDataLogin() {
 
         window.location.href = authUrl;
     }
+
+
 
     return (
             <div className="BackgroundB2Log">

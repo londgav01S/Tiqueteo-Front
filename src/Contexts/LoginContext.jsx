@@ -18,6 +18,7 @@ function LoginProvier({ children }) {
             srcImg: "https://media.licdn.com/dms/image/v2/D4E03AQE2MajnX0lRbA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1724198331875?e=1736380800&v=beta&t=hPHpfPm6X_I5cvLoiZgg_veyxrQxNwT0qYbWOv5hNTo",
         }
     ]);
+    const [isLoged, setIsLoged]= useState(false);
 
 
     return (
@@ -27,7 +28,9 @@ function LoginProvier({ children }) {
             isUser,
             setIsUser,
             userLogged,
-            setUserLogged
+            setUserLogged,
+            isLoged,
+            setIsLoged
         }}>
             {children}
         </LoginContext.Provider>

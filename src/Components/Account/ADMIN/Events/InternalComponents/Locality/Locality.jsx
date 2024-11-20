@@ -1,66 +1,49 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
+import { EventContext} from "../../../../../../Contexts/EventContex";
 import './Locality.css';
 
 function Locality() {
+    const { localityName, setLocalityName, price, setPrice, capacity, setCapacity } = useContext(EventContext);
     const [localities, setLocalities] = useState([]);
-    const [formData, setFormData] = useState({
-        eventName: '',
-        price: '',
-        capacity: ''
-    });
     const [editingId, setEditingId] = useState(null);
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
-
     const handleAddLocality = () => {
-        if (formData.eventName && formData.price && formData.capacity) {
+        if (localityName && price && capacity) {
             if (editingId) {
                 // Actualizar localidad existente
                 setLocalities(prevLocalities =>
                     prevLocalities.map(locality =>
                         locality.id === editingId
-                            ? { ...locality, ...formData }
+                            ? { ...locality, localityName, price, capacity }
                             : locality
                     )
                 );
                 setEditingId(null);
             } else {
                 // Agregar nueva localidad
-                setLocalities(prevLocalities => [...prevLocalities, {
-                    id: Date.now(),
-                    ...formData
-                }]);
+                setLocalities(prevLocalities => [
+                    ...prevLocalities,
+                    { id: Date.now(), localityName, price, capacity }
+                ]);
             }
-            // Limpiar el formulario
-            setFormData({
-                eventName: '',
-                price: '',
-                capacity: ''
-            });
+            // Limpiar los campos
+            setLocalityName('');
+            setPrice('');
+            setCapacity('');
         }
     };
 
     const handleEditLocality = (locality) => {
-        setFormData({
-            eventName: locality.eventName,
-            price: locality.price,
-            capacity: locality.capacity
-        });
+        setLocalityName(locality.eventName);
+        setPrice(locality.price);
+        setCapacity(locality.capacity);
         setEditingId(locality.id);
     };
 
     const handleCancelEdit = () => {
-        setFormData({
-            eventName: '',
-            price: '',
-            capacity: ''
-        });
+        setLocalityName('');
+        setPrice('');
+        setCapacity('');
         setEditingId(null);
     };
 
@@ -81,9 +64,8 @@ function Locality() {
                     <label>Event Name:</label>
                     <input
                         type="text"
-                        name="eventName"
-                        value={formData.eventName}
-                        onChange={handleInputChange}
+                        value={localityName}
+                        onChange={(e) => setLocalityName(e.target.value)}
                         placeholder="High North"
                         className="input-L"
                     />
@@ -92,9 +74,8 @@ function Locality() {
                     <label>Price:</label>
                     <input
                         type="text"
-                        name="price"
-                        value={formData.price}
-                        onChange={handleInputChange}
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
                         placeholder="2000"
                         className="input-L"
                     />
@@ -103,9 +84,8 @@ function Locality() {
                     <label>Capacity:</label>
                     <input
                         type="text"
-                        name="capacity"
-                        value={formData.capacity}
-                        onChange={handleInputChange}
+                        value={capacity}
+                        onChange={(e) => setCapacity(e.target.value)}
                         placeholder="10000"
                         className="input-L"
                     />

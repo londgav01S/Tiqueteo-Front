@@ -21,8 +21,6 @@ function ManageEvents() {
         }),
     };
 
-
-
     return (
         <div className="Events-Container">
             <BasicEventInfo/>
@@ -37,16 +35,18 @@ function ManageEvents() {
             </div>
             <div className="Separator"/>
             <div className="event-delate-container">
-                <label className="label-delateE">Type of Event:</label>
-                <Select
-                    value={event}
-                    onChange={setEvent}
-                    options={events}
-                    styles={customStyles}
-                    placeholder="Select Event"
-                    className="select-events"
-                />
-                <button className="Button-E">Delete Event</button>
+                <div className="input-groupE">
+                    <label className="label-delateE">Type of Event:</label>
+                    <Select
+                        value={event}
+                        onChange={setEvent}
+                        options={events}
+                        styles={customStyles}
+                        placeholder="Select Event"
+                        className="select-events"
+                    />
+                </div>
+                <button className="Button-ME">Delete Event</button>
             </div>
 
         </div>

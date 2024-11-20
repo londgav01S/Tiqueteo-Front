@@ -1,8 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import './HeadBar.css';
 import {IoArrowForwardOutline} from "react-icons/io5";
+import {Link} from "react-router-dom";
+import {LoginContext} from "../../../Contexts/LoginContext";
 
 function HeadBar() {
+
+    const {isLoged, setIsLoged} = useContext(LoginContext)
+
     return (
         <div className="head-bar">
             <h1 className="head-bar-name">
@@ -11,19 +16,25 @@ function HeadBar() {
                 </style>
                 TIQUETEO
             </h1>
-            <div className="head-bar-options">
-                <a href="https://www.google.com" className="head-bar-option">Home</a>
-                <a href="https://www.google.com" className="head-bar-option">Events</a>
-                <a href="https://www.google.com" className="head-bar-option">About</a>
-                <a href="https://www.google.com" className="head-bar-option">Contact</a>
-                <a href="https://www.google.com" className="head-bar-option1">
-                    Login
-                    <div className="head-bar-loglog">
-                        <IoArrowForwardOutline />
-                    </div>
 
-                </a>
-            </div>
+            <nav className="head-bar-options">
+                <Link to="/home" className="head-bar-option">Home</Link>
+                {isLoged ? (
+                    <Link to="/account" className="head-bar-option1">
+                        Account
+                        <div className="head-bar-loglog">
+                            <IoArrowForwardOutline/>
+                        </div>
+                    </Link>
+                ) : (
+                    <Link to="/login" className="head-bar-option1">
+                        Login
+                        <div className="head-bar-loglog">
+                            <IoArrowForwardOutline/>
+                        </div>
+                    </Link>
+                )}
+            </nav>
         </div>
     )
 }

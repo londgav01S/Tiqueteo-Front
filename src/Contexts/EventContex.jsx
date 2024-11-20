@@ -14,12 +14,40 @@ function EventProvider({ children }) {
         }
     ]);
 
+    const [event, setEvent] = useState(null);
+    const [eventName, setEventName] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const [capacity, setCapacity] = useState('');
+    const [localities, setLocalities] = useState([]);
+    const [localityName, setLocalityName] = useState('');
+
 
 
     return (
         <EventContext.Provider value={{
             events,
-            setEvents
+            setEvents,
+            event,
+            setEvent,
+            eventName,
+            setEventName,
+            address,
+            setAddress,
+            city,
+            setCity,
+            description,
+            setDescription,
+            price,
+            setPrice,
+            capacity,
+            setCapacity,
+            localities,
+            setLocalities,
+            localityName,
+            setLocalityName
         }}>
             {children}
         </EventContext.Provider>

@@ -6,6 +6,10 @@ import './BasicEventInfo.css';
 function BasicEventInfo() {
 
     const [event, setEvent] = useState(null);
+    const [eventName, setEventName] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [description, setDescription] = useState('');
 
     const eventsTypes= [
         {
@@ -45,23 +49,46 @@ function BasicEventInfo() {
             <div className="row-Event-info">
                 <div className="input-groupE">
                     <label>Event Name:</label>
-                    <input type="text" placeholder="Super Event" className="input-E"/>
+                    <input
+                        type="text"
+                        placeholder="Super Event"
+                        required="required"
+                        value={eventName}
+                        className="input-E"
+                        onChange={(e) => setEventName(e.target.value)}
+                    />
                 </div>
                 <div className="input-groupE">
                     <label>Address:</label>
-                    <input type="text" placeholder="Kloosterstraat 90" className="input-E"/>
+                    <input
+                        type="text"
+                        placeholder="Kloosterstraat 90"
+                        className="input-E"
+                        required="required"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
                 </div>
                 <div className="input-groupE">
                     <label>City:</label>
-                    <input type="text" placeholder="Boom" className="input-E"/>
+                    <input type="text"
+                           placeholder="Boom"
+                           className="input-E"
+                           required="required"
+                           value={city}
+                           onChange={(e) => setCity(e.target.value)}
+                    />
                 </div>
                 <div className="input-groupE">
                     <label>Description:</label>
-                    <input type="text" placeholder="The best event in the world" className="input-E"/>
-                </div>
-                <div className="input-groupE">
-                    <label>Description:</label>
-                    <input type="text" placeholder="The best event in the world" className="input-E"/>
+                    <input
+                        type="text"
+                        placeholder="The best event in the world"
+                        className="input-E"
+                        required="required"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
                 </div>
                 <div className="input-groupE">
                     <label className="label-event">Type of Event:</label>

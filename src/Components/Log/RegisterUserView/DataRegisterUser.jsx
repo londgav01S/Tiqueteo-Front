@@ -9,13 +9,55 @@ function DataRegisterUser() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
 
-    function handleSubmit() {
-        //TODO: Aquí puedes agregar la lógica para registrar un usuario
-        console.log('User registered successfully');
-        alert("User registration was successful");
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const userData = {
+            name: fullName,
+            email,
+            password,
+            address,
+            phone: phoneNumber,
+            id
+        };
+
+        try {
+            const response = await fetch('http://localhost:8080/api/client/registerUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                setSuccessMessage(`User ${result.name} registered successfully!`);
+                setErrorMessage('');
+                clearForm();
+            } else {
+                const error = await response.json();
+                setErrorMessage(error.message || 'An error occurred during registration.');
+                setSuccessMessage('');
+            }
+        } catch (error) {
+            setErrorMessage('Failed to connect to the server.');
+            setSuccessMessage('');
+        }
+    };
+
+    const clearForm = () => {
+        setFullName('');
+        setId('');
+        setAddress('');
+        setPhoneNumber('');
+        setEmail('');
+        setPassword('');
+    };
 
     function handleSubmitGoogle() {
         //TODO: Aquí puedes agregar la lógica para registrar un usuario con Google
