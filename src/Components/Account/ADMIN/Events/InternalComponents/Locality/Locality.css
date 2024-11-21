@@ -77,6 +77,22 @@
     background-color: #cc0000 !important;
 }
 
+.edit-btn{
+    width: 100px !important;
+    background-color: #32d219;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+.edit-btn:hover {
+    background-color: #00b300 !important;
+}
+
 
 .btn-AddLocality.update:hover {
     background-color: #1976D2;

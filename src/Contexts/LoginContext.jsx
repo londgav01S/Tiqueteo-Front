@@ -4,7 +4,7 @@ const LoginContext = React.createContext();
 
 function LoginProvier({ children }) {
 
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(false);
     const [isUser, setIsUser] = useState(false);
     const [userLogged, setUserLogged] = useState(null);
     const [isLoged, setIsLoged]= useState(false);

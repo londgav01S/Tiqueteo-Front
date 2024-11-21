@@ -1,15 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BasicEventInfo} from "./InternalComponents/BasicEvent/BasicEventInfo";
 import {Locality} from "./InternalComponents/Locality/Locality";
 import Select from "react-select";
 import './ManageEvents.css';
 import {EventImages} from "./InternalComponents/Images/EventImages";
+import {EventContext} from "../../../../Contexts/EventContex";
 
 function ManageEvents() {
 
     const [events, setEvents] = useState([]);
 
-    const [event, setEvent] = useState(null);
+    const {event, setEvent } = React.useContext(EventContext);
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
+
 
     const customStyles = {
         option: (provided, state) => ({
@@ -21,6 +25,83 @@ function ManageEvents() {
         }),
     };
 
+
+    function handleCreateEvent() {
+        fetch("http://localhost:8080/api/admin/createEvent", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(event),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Error al crear el evento");
+                }else {
+                    alert("Event created successfully");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setEvent(data); // Guarda el evento creado
+                setError(null); // Limpia cualquier error previo
+            })
+            .catch((err) => {
+                setError(err.message); // Maneja errores en la solicitud
+            });
+    }
+
+    function findEvents() {
+        fetch("http://localhost:8080/api/admin/allEvents", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Error al obtener los eventos");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setEvents(data); // Guarda los eventos obtenidos
+                setError(null); // Limpia cualquier error previo
+            })
+            .catch((err) => {
+                setError(err.message); // Maneja errores en la solicitud
+            });
+    }
+
+    useEffect(() => {
+        findEvents();
+    }, []);
+
+    function handleDelateEvents() {
+        const id = event.value.id;
+        fetch(`http://localhost:8080/api/admin/${id}/deleteEvent`, {
+            method: "DELETE",
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Error al eliminar el evento");
+                }else {
+                    alert("Event deleted successfully");
+                    findEvents();
+                }
+                setSuccess(`Evento con ID ${id} eliminado exitosamente.`);
+                setError(null); // Limpia cualquier error previo
+            })
+            .catch((err) => {
+                setError(err.message); // Maneja errores en la solicitud
+            });
+    }
+
+    const eventOptions = events.map(event => ({
+        value: event,
+        label: event.name
+    }));
+
     return (
         <div className="Events-Container">
             <BasicEventInfo/>
@@ -30,23 +111,23 @@ function ManageEvents() {
             <Locality/>
             <div className="Separator"/>
             <div className="buttonE-container">
-                <button className="Button-E">Create Event</button>
+                <button className="Button-E" onClick={handleCreateEvent}>Create Event</button>
                 <button className="Button-E">Upload Event</button>
             </div>
             <div className="Separator"/>
             <div className="event-delate-container">
                 <div className="input-groupE">
-                    <label className="label-delateE">Type of Event:</label>
+                    <label className="label-delateE">Select an Event:</label>
                     <Select
                         value={event}
                         onChange={setEvent}
-                        options={events}
+                        options={eventOptions}
                         styles={customStyles}
                         placeholder="Select Event"
                         className="select-events"
                     />
                 </div>
-                <button className="Button-ME">Delete Event</button>
+                <button className="Button-ME" onClick={handleDelateEvents}>Delete Event</button>
             </div>
 
         </div>

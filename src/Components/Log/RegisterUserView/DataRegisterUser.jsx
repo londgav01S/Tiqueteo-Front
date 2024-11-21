@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { FcGoogle } from "react-icons/fc";
 import './DataRegisterUser.css';
+import {useNavigate} from "react-router-dom";
 
 function DataRegisterUser() {
     const [fullName, setFullName] = useState('');
@@ -11,6 +12,8 @@ function DataRegisterUser() {
     const [password, setPassword] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+
+    const navigate = useNavigate();
 
 
     const handleSubmit = async (e) => {
@@ -36,8 +39,10 @@ function DataRegisterUser() {
 
             if (response.ok) {
                 const result = await response.json();
+                alert(`User ${result.name} registered successfully!`);
                 setSuccessMessage(`User ${result.name} registered successfully!`);
                 setErrorMessage('');
+                navigate('/login');
                 clearForm();
             } else {
                 const error = await response.json();

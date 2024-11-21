@@ -2,11 +2,11 @@ import React from 'react'
 import './ScrollImage.css'
 
 
-function ScrollImage({Event}) {
+function ScrollImage({image}) {
 
     return (
         <div className="scrollImage">
-            <img src={Event.srcImage} alt="Event" className="imageScroll" />
+            <img src={image.src} alt="Event" className="imageScroll" />
         </div>
     )
 

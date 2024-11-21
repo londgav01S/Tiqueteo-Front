@@ -1,43 +1,51 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext, useState } from 'react';
 import Select from "react-select";
 import './BasicEventInfo.css';
-import {EventContext} from "../../../../../../Contexts/EventContex";
-
+import { EventContext } from "../../../../../../Contexts/EventContex";
 
 function BasicEventInfo() {
+    const { event, setEvent } = useContext(EventContext);
 
-    const {event} = useContext(EventContext);
+    // Ensure event is always initialized with a valid object
+    const initialEventState = {
+        name: '',
+        address: '',
+        city: '',
+        description: '',
+        type: '',
+        eventDate: '',
+    };
 
-    const eventsTypes= [
-        {
-            value: 'concert',
-            label: 'Concert'
-        },
-        {
-            value: 'sport',
-            label: 'Sport'
-        },
-        {
-            value: 'theater',
-            label: 'Theater'
-        },
-        {
-            value: 'festival',
-            label: 'Festival'
-        },
-        {
-            value: 'other',
-            label: 'Other'
-        }
+    const [localEvent, setLocalEvent] = useState(event || initialEventState);
+    const today = new Date().toISOString().split("T")[0];
+    const [selectedDate, setSelectedDate] = useState("");
+    const eventsTypes = [
+        { value: 'concert', label: 'Concert' },
+        { value: 'sport', label: 'Sport' },
+        { value: 'theater', label: 'Theater' },
+        { value: 'festival', label: 'Festival' },
+        { value: 'other', label: 'Other' }
     ];
+
     const customStyles = {
         option: (provided, state) => ({
             ...provided,
-            backgroundColor: state.isFocused ? '#C9DCFF' : 'white', // Color al pasar el cursor
+            backgroundColor: state.isFocused ? '#C9DCFF' : 'white',
             color: 'black',
             padding: 10,
             borderColor: '#00328f',
         }),
+    };
+
+    const handleInputChange = (field, value) => {
+        setLocalEvent(prevEvent => ({
+            ...prevEvent,
+            [field]: value
+        }));
+        setEvent(prevEvent => ({
+            ...prevEvent,
+            [field]: value
+        }));
     };
 
     return (
@@ -50,9 +58,9 @@ function BasicEventInfo() {
                         type="text"
                         placeholder="Super Event"
                         required="required"
-                        value={'eventName'}
+                        value={localEvent.name}
                         className="input-E"
-                        onChange={(e) => event.name(e.target.value)}
+                        onChange={(e) => handleInputChange('name', e.target.value)}
                     />
                 </div>
                 <div className="input-groupE">
@@ -62,18 +70,19 @@ function BasicEventInfo() {
                         placeholder="Kloosterstraat 90"
                         className="input-E"
                         required="required"
-                        value={'address'}
-                        onChange={(e) => event.address(e.target.value)}
+                        value={localEvent.address}
+                        onChange={(e) => handleInputChange('address', e.target.value)}
                     />
                 </div>
                 <div className="input-groupE">
                     <label>City:</label>
-                    <input type="text"
-                           placeholder="Boom"
-                           className="input-E"
-                           required="required"
-                           value={'city'}
-                           onChange={(e) => event.city(e.target.value)}
+                    <input
+                        type="text"
+                        placeholder="Boom"
+                        className="input-E"
+                        required="required"
+                        value={localEvent.city}
+                        onChange={(e) => handleInputChange('city', e.target.value)}
                     />
                 </div>
                 <div className="input-groupE">
@@ -83,15 +92,26 @@ function BasicEventInfo() {
                         placeholder="The best event in the world"
                         className="input-E"
                         required="required"
-                        value={'description'}
-                        onChange={(e) => event.description(e.target.value)}
+                        value={localEvent.description}
+                        onChange={(e) => handleInputChange('description', e.target.value)}
                     />
                 </div>
                 <div className="input-groupE">
+                    <label htmlFor="date-picker">Expiration date:</label>
+                    <input
+                        id="date-picker"
+                        type="date"
+                        value={localEvent.eventDate}
+                        onChange={(e) => handleInputChange('eventDate', e.target.value)}
+                        min={today}
+                        className="input-date"
+                    />
+                </div>
+                <div className="input-groupE1">
                     <label className="label-event">Type of Event:</label>
                     <Select
-                        value={event}
-                        onChange={(e) => event.type(e.value)}
+                        value={eventsTypes.find(type => type.value === localEvent.type) || null}
+                        onChange={(e) => handleInputChange('type', e.value)}
                         options={eventsTypes}
                         styles={customStyles}
                         placeholder="Select Event"
@@ -101,7 +121,7 @@ function BasicEventInfo() {
 
             </div>
         </div>
-    )
+    );
 }
 
 export {BasicEventInfo};

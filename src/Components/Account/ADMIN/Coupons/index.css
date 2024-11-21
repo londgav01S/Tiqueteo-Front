@@ -33,27 +33,33 @@ h2 {
     width: 250px;
 }
 
+.input-group111{
+    margin-top: 21px;
+    margin-left: 20px;
+}
+
 .select-op, .select-percentage{
     width: 270px;
 }
 
-.input-group1{
-    margin-top: 20px;
-}
 
 .input-tel{
     width: 338px;
+}
+
+.input-group112{
+    margin-top: 19px;
 }
 
 
 .input-row {
     display: flex;
     margin-bottom: 10px;
-    gap: 100px;
+    gap: 85px;
 }
 
 .input-group21{
-    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .input-row1{
@@ -85,23 +91,23 @@ input:focus {
 }
 
 .image-section {
-    width: 300px;
+    width: 400px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 120px;
+    margin-top: 60px;
     margin-right: 60px;
 }
 
 .image-placeholder {
-    width: 200px;
-    height: 200px;
-    border: 2px dashed #ddd;
+    width: 300px;
+    height: 300px;
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f8f8f8;
+    background-color: rgb(0,0,0,0);
 }
 
 .image-placeholder span {

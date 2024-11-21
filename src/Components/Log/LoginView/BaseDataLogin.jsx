@@ -1,19 +1,21 @@
 import React, {useContext, useState} from 'react';
-import { FcGoogle } from "react-icons/fc";
 import './BaseDataLogin.css';
 import {LoginContext} from "../../../Contexts/LoginContext";
 import Alert from '@mui/material/Alert';
 import {useNavigate} from "react-router-dom";
 
+
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 function BaseDataLogin() {
 
-    const {userLogged, setUserLogged, setIsLoged, setIsAdmin} = useContext(LoginContext);
+    const {userLogged, setUserLogged, setIsLoged, setIsAdmin, isAdmin} = useContext(LoginContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [isOk, setIsOk] = useState(false);
+    const [message, setMessage] = useState('');
 
     const navigate = useNavigate();
 
@@ -27,7 +29,6 @@ function BaseDataLogin() {
             password: password
         };
 
-        // Hacer la solicitud POST al backend
         fetch('http://localhost:8080/api/client/login', {
             method: 'POST',
             headers: {
@@ -39,13 +40,14 @@ function BaseDataLogin() {
                 if (response.ok) {
                     return response.json(); // Si la respuesta es exitosa, obtenemos el cliente
                 } else if (response.status === 401) {
+                    alert("Credenciales incorrectas");
                     throw new Error('Credenciales incorrectas');
                 } else {
+
                     throw new Error('Error desconocido');
                 }
             })
             .then(data => {
-                // Si el login es exitoso, se maneja el cliente aquí
                 setUserLogged(data);
                 setIsLoged(true);
                 console.log(data);
@@ -65,26 +67,38 @@ function BaseDataLogin() {
                     navigate('/home'); // Redirigir al usuario a /home
                 }, 1000);
             })
-            .catch(error => {
-                setErrorMessage(error.message); // Mostrar el mensaje de error
-                setSuccessMessage(''); // Limpiar cualquier mensaje de éxito
-            });
-    }
+        .catch(error => {
+            console.error("Error en la solicitud:", error);
+            setMessage(error.message); // "Credenciales incorrectas" o "Error al intentar iniciar sesión"
+        });
+}
 
+    const handleSuccess = (credentialResponse) => {
+        console.log("Google Credential Response:", credentialResponse);
 
-    function handleSubmitGoogle() {
-        console.log("login with google")
-        const clientId = '633937686926-kop9phc0tug4usplr1inlidd45tdrjng.apps.googleusercontent.com'; // Reemplaza con tu client_id
-        const redirectUri = 'http://localhost:8080/api/client/login'; // TODO: Asegúrate de que coincida con tu configuración
-        const scope = 'openid profile email'; // Ajusta los scopes según sea necesario
-        const authUrl = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
-
-        window.location.href = authUrl;
-    }
+        // Enviar token al backend
+        fetch("http://localhost:8080/api/outh/google", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ tokenId: credentialResponse.credential }),
+        })
+            .then((res) => {
+                if (res.ok) {
+                    console.log("Usuario autenticado");
+                    navigate("/home");
+                } else {
+                    console.error("Error de autenticación");
+                }
+            })
+            .catch((error) => console.error("Error:", error));
+    };
 
     function handleNavigateToRegister() {
         navigate('/registerUser'); // Redirigimos a /registerUser
     }
+        const handleError = () => {
+            console.error("Error al iniciar sesión con Google");
+        };
 
     return (
             <div className="BackgroundB2Log">
@@ -131,16 +145,19 @@ function BaseDataLogin() {
                                 </style>
                                 Login now
                             </button>
-                            {errorMessage && <p className="error">{errorMessage}</p>}
-                            {isOk && <Alert severity="success">Login was Successful</Alert>}
-                            {successMessage && <p className="success">{successMessage}</p>}
-                            <button className="continueGoogleLog" onClick={handleSubmitGoogle}>
-                                <style>
-                                    @import url('https://fonts.googleapis.com/css2?family=Bigshot+One&display=swap');
-                                </style>
-                                <FcGoogle size={20}/>
-                                Continue with Google
-                            </button>
+                            {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+                            {isOk && <Alert severity="success">{successMessage}</Alert>}
+                            <div>
+                                <GoogleOAuthProvider clientId="633937686926-kop9phc0tug4usplr1inlidd45tdrjng.apps.googleusercontent.com">
+                                    <div>
+                                        <GoogleLogin
+                                            onSuccess={handleSuccess}
+                                            onError={handleError}
+                                            classname="googleButton"
+                                        />
+                                    </div>
+                                </GoogleOAuthProvider>
+                            </div>
                             <button
                                 className="dontHaveAnAccount"
                                 onClick={handleNavigateToRegister} // Redirige a /registerUser

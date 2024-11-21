@@ -1,8 +1,16 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import './EventImages.css';
+import {EventContext} from "../../../../../../Contexts/EventContex";
+import {appFirebase} from "../../../../../../Services/Credencials";
+import {getFirestore, collection, addDoc} from "firebase/firestore";
+import {getStorage,ref, uploadBytes, getDownloadURL} from "firebase/storage";
+
+const db = getFirestore(appFirebase);
+const storage = getStorage(appFirebase);
 
 function EventImages() {
 
+    const [event, setEvent] = useState("");
     const [images, setImages] = useState([]);
 
     const handleImageUpload = (e) => {
@@ -18,10 +26,13 @@ function EventImages() {
         Promise.all(imagePromises).then(results => {
             setImages(prevImages => [...prevImages, ...results]);
         });
+        {/*event.images = images;*/}
+
     };
 
     const removeImage = (index) => {
         setImages(prevImages => prevImages.filter((_, i) => i !== index));
+        {/*event.images = images;*/}
     };
 
     return (

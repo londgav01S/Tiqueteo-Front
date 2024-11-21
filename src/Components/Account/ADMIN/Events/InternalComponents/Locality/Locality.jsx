@@ -1,48 +1,59 @@
-import React, {useContext, useState} from 'react';
-import { EventContext} from "../../../../../../Contexts/EventContex";
+import React, { useContext, useState } from 'react';
+import { EventContext } from "../../../../../../Contexts/EventContex";
 import './Locality.css';
 
 function Locality() {
-    const { localityName, setLocalityName, price, setPrice, capacity, setCapacity, localities, setLocalities } = useContext(EventContext);
-    const [editingId, setEditingId] = useState(null);
+    const { localities, setLocalities, event } = useContext(EventContext); // Usamos el contexto directamente.
+
+    // Estado para la localidad actual.
+    const [locality, setLocality] = useState({
+        name: '',
+        price: '',
+        maxCapacity: '',
+    });
+
+    const [editingId, setEditingId] = useState(null); // Estado local para identificar la edición.
 
     const handleAddLocality = () => {
-        if (localityName && price && capacity) {
+        const { name, price, maxCapacity } = locality;
+
+        if (name && price && maxCapacity) {
             if (editingId) {
                 // Actualizar localidad existente
                 setLocalities(prevLocalities =>
-                    prevLocalities.map(locality =>
-                        locality.id === editingId
-                            ? { ...locality, localityName, price, capacity }
-                            : locality
+                    prevLocalities.map(item =>
+                        item.id === editingId
+                            ? { ...item, ...locality }
+                            : item
                     )
                 );
-                setEditingId(null);
+                setEditingId(null); // Limpiar ID de edición
             } else {
                 // Agregar nueva localidad
                 setLocalities(prevLocalities => [
                     ...prevLocalities,
-                    { id: Date.now(), localityName, price, capacity }
+                    { id: Date.now(), ...locality }
                 ]);
             }
-            // Limpiar los campos
-            setLocalityName('');
-            setPrice('');
-            setCapacity('');
+
+            event.localities = localities; // Actualizar localidades en el evento
+
+            // Limpiar el estado de la localidad después de agregar o actualizar
+            setLocality({ name: '', price: '', maxCapacity: '' });
         }
     };
 
     const handleEditLocality = (locality) => {
-        setLocalityName(locality.eventName);
-        setPrice(locality.price);
-        setCapacity(locality.capacity);
+        setLocality({
+            name: locality.name,
+            price: locality.price,
+            maxCapacity: locality.maxCapacity,
+        });
         setEditingId(locality.id);
     };
 
     const handleCancelEdit = () => {
-        setLocalityName('');
-        setPrice('');
-        setCapacity('');
+        setLocality({ name: '', price: '', maxCapacity: '' });
         setEditingId(null);
     };
 
@@ -63,8 +74,8 @@ function Locality() {
                     <label>Event Name:</label>
                     <input
                         type="text"
-                        value={localityName}
-                        onChange={(e) => setLocalityName(e.target.value)}
+                        value={locality.name}
+                        onChange={(e) => setLocality({ ...locality, name: e.target.value })}
                         placeholder="High North"
                         className="input-L"
                     />
@@ -73,8 +84,8 @@ function Locality() {
                     <label>Price:</label>
                     <input
                         type="text"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
+                        value={locality.price}
+                        onChange={(e) => setLocality({ ...locality, price: e.target.value })}
                         placeholder="2000"
                         className="input-L"
                     />
@@ -83,8 +94,8 @@ function Locality() {
                     <label>Capacity:</label>
                     <input
                         type="text"
-                        value={capacity}
-                        onChange={(e) => setCapacity(e.target.value)}
+                        value={locality.maxCapacity}
+                        onChange={(e) => setLocality({ ...locality, maxCapacity: e.target.value })}
                         placeholder="10000"
                         className="input-L"
                     />
@@ -112,28 +123,33 @@ function Locality() {
                     <table className="localities-table">
                         <thead>
                         <tr>
-                            <th>Event Name</th>
+                            <th>Locality Name</th>
                             <th>Price</th>
                             <th>Capacity</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {localities.map(locality => (
+                        {localities.map(item => (
                             <tr
-                                key={locality.id}
-                                className={editingId === locality.id ? 'editing' : ''}
-                                onClick={() => handleEditLocality(locality)}
+                                key={item.id}
+                                className={editingId === item.id ? 'editing' : ''}
                             >
-                                <td>{locality.eventName}</td>
-                                <td>${locality.price}</td>
-                                <td>{locality.capacity}</td>
+                                <td>{item.name}</td>
+                                <td>${item.price}</td>
+                                <td>{item.maxCapacity}</td>
                                 <td>
+                                    <button
+                                        className="edit-btn"
+                                        onClick={() => handleEditLocality(item)}
+                                    >
+                                        Edit
+                                    </button>
                                     <button
                                         className="delete-btn"
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            handleDeleteLocality(locality.id);
+                                            handleDeleteLocality(item.id);
                                         }}
                                     >
                                         Delete

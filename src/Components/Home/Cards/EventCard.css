@@ -1,0 +1,6 @@
+.EventImage{
+    width: 7cm;
+    height: 7cm;
+    object-fit: cover;
+    border-radius: 2px;
+}

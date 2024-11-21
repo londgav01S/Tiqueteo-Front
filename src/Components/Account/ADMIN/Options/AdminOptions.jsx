@@ -25,7 +25,7 @@ function AdminOptions(){
                     <Link to={"/account/my-update"} className="AccountOpOptionAdmin">Update</Link>
                     <div className="SeparatorAdmin"/>
                     <h4>COUPONS</h4>
-                    <Link to={"/account/manage-coupons"} className="AccountOpOptionAdmin">Manage <br/>Coupons</Link>
+                    <Link to={"/account/my-coupons"} className="AccountOpOptionAdmin">Manage <br/>Coupons</Link>
                     <div className="SeparatorAdmin"/>
                     <h4>STADISTICS</h4>
                     <Link to={"/account/stadistics"} className="AccountOpOptionAdmin">Management <br/>of Reports</Link>

@@ -1,0 +1,41 @@
+.SearchHome{
+    z-index: 200;
+}
+
+.margin-top{
+    margin-top: -20px;
+}
+
+.titleFeatures{
+    font-family: 'Abel', sans-serif;
+    font-size: 30px;
+}
+
+.Separator{
+    height: 1px;
+    background-color: #024DD9;
+    margin: 13px 0;
+    width: 120px;
+}
+
+.EventCardsContainer{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 10px;
+    overflow-x: auto;
+    gap: 40px;
+}
+
+.EventCardsContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.EventSearchContainer{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 10px;
+    overflow-x: auto;
+    gap: 40px;
+    width: 7cm;
+
+}

@@ -34,14 +34,14 @@
     outline: 2px solid #00328f;
 }
 
-.Button-E:hover {
+.Button-E:hover, .Button-ME:hover {
     color: #ffffff;
     transform: scale(1.1);
     outline: 2px solid #00328f;
     box-shadow: 4px 5px 17px -4px #00328f;
 }
 
-.Button-E::before {
+.Button-E::before, .Button-ME::before {
     content: "";
     position: absolute;
     left: -50px;
@@ -54,7 +54,7 @@
     transition: width 1000ms;
 }
 
-.Button-E:hover::before {
+.Button-E:hover::before, .Button-ME:hover::before {
     width: 250%;
 }
 

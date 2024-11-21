@@ -1,15 +1,14 @@
 import React, {useContext} from "react";
 import {HeadBar} from "../../Components/Home/HeadBar/HeadBar";
 import {ScrollImage} from "../../Components/Home/ScrollingImages/ScrollImage";
-import {EventContext} from "../../Contexts/EventContex";
+import {BaseHome} from "../../Components/Home/BaseHome";
 
 function HomePage() {
 
-    const {events} = useContext(EventContext);
 
     return (
         <div>
-            <ScrollImage Event={events[0]}/>
+            <BaseHome/>
         </div>
 
     );
