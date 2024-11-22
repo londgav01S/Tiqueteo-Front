@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/Tiqueteo-Front/static/css/main.6f7a6c51.css",
+    "main.js": "/Tiqueteo-Front/static/js/main.e29fabeb.js",
+    "static/js/213.6a798a7b.chunk.js": "/Tiqueteo-Front/static/js/213.6a798a7b.chunk.js",
+    "static/js/455.aef94b52.chunk.js": "/Tiqueteo-Front/static/js/455.aef94b52.chunk.js",
+    "static/js/453.d63a30e4.chunk.js": "/Tiqueteo-Front/static/js/453.d63a30e4.chunk.js",
+    "index.html": "/Tiqueteo-Front/index.html",
+    "main.6f7a6c51.css.map": "/Tiqueteo-Front/static/css/main.6f7a6c51.css.map",
+    "main.e29fabeb.js.map": "/Tiqueteo-Front/static/js/main.e29fabeb.js.map",
+    "213.6a798a7b.chunk.js.map": "/Tiqueteo-Front/static/js/213.6a798a7b.chunk.js.map",
+    "455.aef94b52.chunk.js.map": "/Tiqueteo-Front/static/js/455.aef94b52.chunk.js.map",
+    "453.d63a30e4.chunk.js.map": "/Tiqueteo-Front/static/js/453.d63a30e4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6f7a6c51.css",
+    "static/js/main.e29fabeb.js"
+  ]
+}
