@@ -1,12 +1,41 @@
-import React, {useRef, useState} from "react";
+import React, {useContext, useRef, useState} from "react";
+import './index.css';
+import {LoginContext} from "../../Contexts/LoginContext";
 
 function DataNewPassword() {
+
+    const {email} = useContext(LoginContext);
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
 
     function handleSubmit() {
-
+        console.log(email);
+        console.log(newPassword);
+        if (newPassword === confirmPassword) {
+            fetch("http://localhost:8080/api/new-password", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, newPassword }),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        alert("La contraseña ha sido actualizada correctamente.");
+                    } else {
+                        return response.json().then((errorData) => {
+                            alert("Error al actualizar la contraseña.");
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error en la solicitud:", error);
+                    alert("Hubo un problema al procesar la solicitud.");
+                });
+        } else {
+            alert("Las contraseñas no coinciden.");
+        }
     }
 
     return (
@@ -45,7 +74,7 @@ function DataNewPassword() {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                     </div>
-                    <button className="ButtonLog" onClick={handleSubmit}>
+                    <button className="ButtonNp" onClick={handleSubmit}>
                         <style>
                             @import url('https://fonts.googleapis.com/css2?family=Bigshot+One&display=swap');
                         </style>

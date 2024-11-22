@@ -1,13 +1,44 @@
 import React, {useState} from "react";
 import './BaseRp.css';
+import {ModalContext} from "../../../Contexts/ModalContext";
+import {LogoutModal} from "../../../Hooks/Modals/LogoutModal";
+import {Logout} from "../Logout/Logout";
+import {EnterCode} from "../../Code/EnterCode";
+import {LoginContext} from "../../../Contexts/LoginContext";
 
 
 function DataRecoverPassword() {
 
-    const [email, setEmail] = useState('');
+    const {email, setEmail} = React.useContext(LoginContext);
+    const [message, setMessage] = useState("");
+    const {setOpenCode,openCode} = React.useContext(ModalContext);
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault();
 
+        fetch("http://localhost:8080/api/recovery-code", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    setMessage("El código de recuperación ha sido enviado a tu correo.");
+                    setOpenCode(true);
+                    alert("El código de recuperación ha sido enviado a tu correo.");
+                } else {
+                    return response.json().then((errorData) => {
+                        setMessage(errorData.message || "Error al solicitar el código de recuperación.");
+                        alert(message)
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error("Error en la solicitud:", error);
+                setMessage("Hubo un problema al procesar la solicitud.");
+            });
     }
 
     return (
@@ -41,8 +72,14 @@ function DataRecoverPassword() {
                         </style>
                         Send Code
                     </button>
+                    {openCode && (
+                        <LogoutModal>
+                            <EnterCode/>
+                        </LogoutModal>
+                    )}
                 </div>
                 </body>
+
             </div>
         </div>
     );

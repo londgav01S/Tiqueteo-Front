@@ -1,0 +1,171 @@
+.BasicInfoContainer{
+    margin-top: 40px;
+    margin-left: 1.5cm;
+
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.generalInfoI, .localitiesContainer{
+    display: flex;
+}
+
+.generalInfoI{
+    justify-items: center;
+    gap: 200px
+}
+
+.localitiesContainer{
+    margin:20px;
+}
+
+.tableInfoE{
+    border: 1px solid #024DD9;
+    border-radius: 3px;
+    width: 40%;
+    height: 100%;
+}
+
+.tableInfoE1{
+    width: 95% !important;
+}
+
+.eventInfoI, .tableInfoE1{
+    border: 1px solid #024DD9;
+    border-radius: 3px;
+    width: 40%;
+    height: 100%;
+
+    .SeparatorI{
+        height: 1px;
+        background-color: #024DD9;
+        width: 100%;
+    }
+
+    .infoE{
+        padding: 20px;
+    }
+
+    .titleInfoE{
+        font-family: "Bigshot One", serif;
+        font-weight: bold;
+        font-size: 20px;
+        margin-left: 20px;
+    }
+}
+
+.eventImageI{
+    width: 350px;
+}
+
+.tableContainer{
+    width: 70%;
+}
+
+.localitiesTable {
+    width: 80%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.localities-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.localitiesTable th,
+.localitiesTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.localitiesTable th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.localitiesTable tbody tr {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.localitiesTable tr:hover {
+    background-color: #f9f9f9;
+}
+
+.localitiesTable tr.editing {
+    background-color: #e3f2fd;
+}
+
+
+.localitiesTable tr:hover {
+    background-color: #f9f9f9;
+}
+
+.BtnGoBuy {
+    width: 300px;
+    height: 50px;
+    border: none;
+    margin-top: 20px;
+    margin-right: 50px;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #00328f;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #00328f;
+}
+
+.BtnGoBuy:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #00328f;
+    box-shadow: 4px 5px 17px -4px #00328f;
+}
+
+.BtnGoBuy::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #00328f;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+}
+
+.BtnGoBuy:hover::before {
+    width: 250%;
+}
+
+.ticketSelect{
+    width: 100px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #00328f;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #00328f;
+}
+
+.ticketSelect option:hover {
+    background-color: #aeb9ff;
+}

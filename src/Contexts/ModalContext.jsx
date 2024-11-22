@@ -4,11 +4,14 @@ const ModalContext = React.createContext();
 
 function ModalProvider({ children }) {
     const [openLogout, setOpenLogout] = React.useState(false);
+    const [openCode, setOpenCode] = React.useState(false);
 
     return (
         <ModalContext.Provider value={{
             openLogout,
-            setOpenLogout
+            setOpenLogout,
+            openCode,
+            setOpenCode
         }}>
             {children}
         </ModalContext.Provider>

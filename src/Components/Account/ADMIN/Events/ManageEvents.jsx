@@ -8,9 +8,7 @@ import {EventContext} from "../../../../Contexts/EventContex";
 
 function ManageEvents() {
 
-    const [events, setEvents] = useState([]);
-
-    const {event, setEvent } = React.useContext(EventContext);
+    const {event, setEvent, setWasEventCreated, events, setEvents } = React.useContext(EventContext);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
@@ -39,6 +37,7 @@ function ManageEvents() {
                     throw new Error("Error al crear el evento");
                 }else {
                     alert("Event created successfully");
+                    setWasEventCreated(true);
                 }
                 return response.json();
             })
@@ -51,32 +50,6 @@ function ManageEvents() {
             });
     }
 
-    function findEvents() {
-        fetch("http://localhost:8080/api/admin/allEvents", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Error al obtener los eventos");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                setEvents(data); // Guarda los eventos obtenidos
-                setError(null); // Limpia cualquier error previo
-            })
-            .catch((err) => {
-                setError(err.message); // Maneja errores en la solicitud
-            });
-    }
-
-    useEffect(() => {
-        findEvents();
-    }, []);
-
     function handleDelateEvents() {
         const id = event.value.id;
         fetch(`http://localhost:8080/api/admin/${id}/deleteEvent`, {
@@ -87,7 +60,6 @@ function ManageEvents() {
                     throw new Error("Error al eliminar el evento");
                 }else {
                     alert("Event deleted successfully");
-                    findEvents();
                 }
                 setSuccess(`Evento con ID ${id} eliminado exitosamente.`);
                 setError(null); // Limpia cualquier error previo

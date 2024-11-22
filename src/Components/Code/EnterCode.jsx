@@ -1,9 +1,14 @@
 import React, {useRef, useState} from "react";
 import './indexCode.css';
+import {LoginContext} from "../../Contexts/LoginContext";
+import {useNavigate} from "react-router-dom";
 
 function EnterCode() {
     const [code, setCode] = useState(['', '', '', '']);
     const inputRefs = [useRef(), useRef(), useRef(), useRef()];
+    const {email} = React.useContext(LoginContext);
+    const [message, setMessage] = useState("");
+    const navigate = useNavigate();
 
     const handleChange = (index, value) => {
         if (value.length <= 1) {
@@ -22,6 +27,35 @@ function EnterCode() {
             inputRefs[index - 1].current.focus();
         }
     };
+
+    function handleSubmitedCode(e) {
+        e.preventDefault();
+        const codeValue = code.join('');
+        console.log(codeValue);
+
+
+        fetch("http://localhost:8080/api/validate-code", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, code: codeValue }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.valid) {
+                    setMessage("El código de recuperación es válido.");
+                    alert("El código de recuperación es válido.");
+                    navigate("/newPwd");
+                } else {
+                    setMessage("El código de recuperación no es válido.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error en la solicitud:", error);
+                setMessage("Hubo un problema al validar el código.");
+            });
+    }
 
     return (
         <div className="codeCard">
@@ -47,7 +81,7 @@ function EnterCode() {
                     ))}
                 </div>
 
-                <button onClick={() => console.log('Submitted code:', code.join(''))}>
+                <button onClick={handleSubmitedCode}>
                     Submit
                 </button>
             </div>

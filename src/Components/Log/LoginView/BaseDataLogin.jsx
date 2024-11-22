@@ -100,6 +100,10 @@ function BaseDataLogin() {
             console.error("Error al iniciar sesión con Google");
         };
 
+    function handleNavigateToRecover() {
+        navigate('/recoverPassword'); // Redirigimos a /recover
+    }
+
     return (
             <div className="BackgroundB2Log">
                 <div className="BackgroundB21Log">
@@ -129,7 +133,7 @@ function BaseDataLogin() {
                             <div className="registerBoxLog">
                                 <div className="label-and-link">
                                     <label className="passwordLog">Password</label>
-                                    <a href="https://www.google.com" className="haveAnAccount">Forgot?</a>
+                                    <button onClick={handleNavigateToRecover} className="dontHaveAnAccount">Forgot?</button>
                                 </div>
                                 <input
                                     type="text"

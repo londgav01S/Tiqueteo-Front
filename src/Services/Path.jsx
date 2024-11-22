@@ -5,9 +5,9 @@ import {MyAccount} from "../Pages/Account/MyAccount";
 import {Login} from "../Pages/Login/Login";
 import {RecoverPassword} from "../Pages/RecoverPassword/RecoverPassword";
 import {RegisterUser} from "../Pages/RegisterUser/RegisterUser";
-import {MyProfile} from "../Components/Account/Profile/MyProfile";
-import {Profile} from "../Pages/Account/AccountDirectories/Profile";
-import {Update} from "../Pages/Account/AccountDirectories/Update";
+import {EventInfo} from "../Pages/Shopp/EventInfo";
+import {DataNewPassword} from "../Components/NewPassword/DataNewPassword";
+import {NewPawd} from "../Pages/NewPwd/NewPawd";
 
 
 function BackG() {
@@ -19,6 +19,8 @@ function BackG() {
             <Route path="/login" element={<Login/>}/>
             <Route path="/recoverPassword" element={<RecoverPassword/>}/>
             <Route path="/registerUser" element={<RegisterUser/>}/>
+            <Route path="/buy" element={<EventInfo/>}/>
+            <Route path="/newPwd" element={<NewPawd/>}/>
         </Routes>
     );
 }

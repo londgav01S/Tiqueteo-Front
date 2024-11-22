@@ -47,29 +47,32 @@ function Search() {
     const [selectedLocation, setSelectedLocation] = useState("");
 
     const performSearch = (searchTerm, selectedLocation, category, date) => {
-
-        if (searchTerm.length >= 1 || selectedLocation.length >= 1 || category.length >= 1 || date.length >= 1) {
+        if (searchTerm || selectedLocation || category || date) {
             setIsSearch(true);
         } else {
             setIsSearch(false);
         }
 
         const filtered = events.filter((event) => {
-            const cityMatch = event.city ? selectedLocation.includes(event.city) : true;
-            const typeMatch = event.type ? event.type.toLowerCase().includes(category.toLowerCase()) : true;
-            const dateMatch = event.date ? event.date.startsWith(date) : true;
+            const cityMatch = selectedLocation
+                ? selectedLocation.split(",")[0].trim().toLowerCase() === event.city.toLowerCase()
+                : true;
+            const typeMatch = category
+                ? event.type?.toLowerCase() === category.toLowerCase()
+                : true;
+            const dateMatch = date
+                ? event.eventDate.startsWith(date)
+                : true;
+            const nameMatch = searchTerm
+                ? event.name.toLowerCase().includes(searchTerm.toLowerCase())
+                : true;
 
-            return (
-                event.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-                cityMatch &&
-                typeMatch &&
-                dateMatch
-            );
+            return nameMatch && cityMatch && typeMatch && dateMatch;
         });
 
         setFilteredEvents(filtered);
-
     };
+
 
 
     const handleSearch = (e) => {

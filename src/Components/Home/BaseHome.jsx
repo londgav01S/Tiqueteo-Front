@@ -7,19 +7,16 @@ import './BaseHome.css';
 
 function BaseHome() {
 
-    const {events, images, isSearch, filteredEvents} = useContext(EventContext);
-
+    const {events, setEvents, images, isSearch, filteredEvents} = useContext(EventContext);
     const [randomImg, setRandomImg] = useState(images[Math.floor(Math.random() * images.length)]);
 
     useEffect(() => {
-
         const intervalId = setInterval(() => {
             setRandomImg(images[Math.floor(Math.random() * images.length)]);
         }, 5000); // Cambia la canción cada 5 segundos
 
         return () => clearInterval(intervalId); // Limpia el intervalo cuando el componente se desmonta
     }, []);
-
 
     return (
         <div>

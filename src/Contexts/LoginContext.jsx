@@ -8,6 +8,7 @@ function LoginProvier({ children }) {
     const [isUser, setIsUser] = useState(false);
     const [userLogged, setUserLogged] = useState(null);
     const [isLoged, setIsLoged]= useState(false);
+    const [email, setEmail] = useState('');
 
 
     return (
@@ -19,7 +20,9 @@ function LoginProvier({ children }) {
             userLogged,
             setUserLogged,
             isLoged,
-            setIsLoged
+            setIsLoged,
+            email,
+            setEmail
         }}>
             {children}
         </LoginContext.Provider>

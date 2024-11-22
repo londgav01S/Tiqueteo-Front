@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Select from "react-select";
 import './BasicEventInfo.css';
 import { EventContext } from "../../../../../../Contexts/EventContex";
 
 function BasicEventInfo() {
-    const { event, setEvent } = useContext(EventContext);
+    const { event, setEvent, wasEventCreated, setWasEventCreated } = useContext(EventContext);
 
     // Ensure event is always initialized with a valid object
     const initialEventState = {
@@ -47,6 +47,13 @@ function BasicEventInfo() {
             [field]: value
         }));
     };
+
+    useEffect(() => {
+        if (wasEventCreated) {
+            setLocalEvent(initialEventState);
+            setWasEventCreated(false);
+        }
+    }, [wasEventCreated]);
 
     return (
         <div className="BasicInfoContainer">

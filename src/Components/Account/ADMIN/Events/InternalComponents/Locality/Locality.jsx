@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { EventContext } from "../../../../../../Contexts/EventContex";
 import './Locality.css';
 
 function Locality() {
-    const { localities, setLocalities, event } = useContext(EventContext); // Usamos el contexto directamente.
+    const { localities, setLocalities, event, wasEventCreated,setWasEventCreated } = useContext(EventContext); // Usamos el contexto directamente.
 
     // Estado para la localidad actual.
     const [locality, setLocality] = useState({
@@ -65,6 +65,13 @@ function Locality() {
             handleCancelEdit();
         }
     };
+
+    useEffect(() => {
+        if (wasEventCreated) {
+            setLocalities([]); // Limpiar la tabla de localidades
+            setWasEventCreated(false); // Restablecer el estado
+        }
+    }, [wasEventCreated]);
 
     return (
         <div className="locationContainer">
