@@ -29,7 +29,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -52,5 +54,6 @@
   "proxy": "http://localhost:8080",
   "devDependencies": {
     "gh-pages": "^6.2.0"
-  }
+  },
+  "homepage": "http://londgav01S.github.io/Tiqueteo-Front"
 }
